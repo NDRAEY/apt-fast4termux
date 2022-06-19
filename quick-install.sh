@@ -6,10 +6,10 @@ apt_fast_installation() {
   	pkg install -y aria2
   fi
 
-  wget https://raw.githubusercontent.com/NDRAEY/apt-fast4termux/master/apt-fast -O $PREFIX/local/sbin/apt-fast
-  chmod +x $PREFIX/local/bin/apt-fast
+  wget https://raw.githubusercontent.com/NDRAEY/apt-fast4termux/master/apt-fast -O $PREFIX/bin/apt-fast
+  chmod +x $PREFIX/bin/apt-fast
   if ! [[ -f $PREFIX/etc/apt-fast.conf ]]; then
-    wget https://raw.githubusercontent.com/NDTRAEY/apt-fast4termux/master/apt-fast.conf -O $PREFIX/etc/apt-fast.conf
+    wget https://raw.githubusercontent.com/NDRAEY/apt-fast4termux/master/apt-fast.conf -O $PREFIX/etc/apt-fast.conf
   fi
 }
 
