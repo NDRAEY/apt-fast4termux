@@ -3,23 +3,14 @@ set -e
 
 apt_fast_installation() {
   if ! type aria2c >/dev/null 2>&1; then
-    sudo apt-get update
-    sudo apt-get install -y aria2
+  	pkg install -y aria2
   fi
 
-  wget https://raw.githubusercontent.com/ilikenwf/apt-fast/master/apt-fast -O /usr/local/sbin/apt-fast
-  chmod +x /usr/local/sbin/apt-fast
-  if ! [[ -f /etc/apt-fast.conf ]]; then
-    wget https://raw.githubusercontent.com/ilikenwf/apt-fast/master/apt-fast.conf -O /etc/apt-fast.conf
+  wget https://raw.githubusercontent.com/NDRAEY/apt-fast4termux/master/apt-fast -O $PREFIX/local/sbin/apt-fast
+  chmod +x $PREFIX/local/bin/apt-fast
+  if ! [[ -f $PREFIX/etc/apt-fast.conf ]]; then
+    wget https://raw.githubusercontent.com/NDTRAEY/apt-fast4termux/master/apt-fast.conf -O $PREFIX/etc/apt-fast.conf
   fi
 }
 
-
-if [[ "$EUID" -eq 0 ]]; then
-  apt_fast_installation
-else
-  type sudo >/dev/null 2>&1 || { echo "sudo not installed, change into root context" >&2; exit 1; }
-
-  DECL="$(declare -f apt_fast_installation)"
-  sudo bash -c "$DECL; apt_fast_installation"
-fi
+apt_fast_installation
